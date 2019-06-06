@@ -3,14 +3,42 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PromotionComponent } from './components/promotion/promotion.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { InterviewComponent } from './components/interview/interview.component';
+import { SessionComponent } from './components/session/session.component';
+import { PromotionFormComponent } from './components/promotion-form/promotion-form.component';
+import { EtudiantFormComponent } from './components/etudiant-form/etudiant-form.component';
+import { PromotionDetailComponent } from './components/promotion-detail/promotion-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PromotionComponent,
+    InterviewComponent,
+    SessionComponent,
+    PromotionFormComponent,
+    EtudiantFormComponent,
+    PromotionDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatIconModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
