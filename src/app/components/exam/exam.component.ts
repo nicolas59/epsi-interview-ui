@@ -18,14 +18,17 @@ export class ExamComponent implements OnInit {
   currentQuestion?: Question;
   currentNum?: number;
 
+
   state = State.PENDING;
 
   constructor() { }
 
   ngOnInit() {
     this.currentNum = 1;
-    this.currentQuestion = {
-      label: `Avec JPA, au niveau de la definition d\'un collection,
+    this.questions = [
+      {
+        id: 1,
+        label: `Avec JPA, au niveau de la definition d\'un collection,
       il est possible d\'utiliser le type de chargement lazy,
       que permet ce mode?
 
@@ -34,19 +37,39 @@ export class ExamComponent implements OnInit {
 List<Client> clients;
 \`\`\`
       `,
-      items: [
-        { reference: 'R1', order: 1, label: 'Charger la liste uniquement lorsque celle-ci est accéder par l\'application' },
-        { reference: 'R2', order: 2, label: 'Charger la liste des que l\'objet la contenant' },
-        {
-          reference: 'R3', order: 2,
-          label: `La liste ne sera jamais chargée. Il sera nécessaire
+        items: [
+          { reference: 'R1', order: 1, label: 'Charger la liste uniquement lorsque celle-ci est accéder par l\'application' },
+          { reference: 'R2', order: 2, label: 'Charger la liste des que l\'objet la contenant' },
+          {
+            reference: 'R3', order: 2,
+            label: `La liste ne sera jamais chargée. Il sera nécessaire
         de réaliser d\'utiliser une requete JQL pour obtenir le contenu de la liste` },
-      ]
-    };
+        ]
+      },
+      {
+        id: 2,
+        label: `Que fait l\'annotation @Entity ?`,
+        items: [
+          { reference: 'R1', order: 1, label: 'Charger la liste uniquement lorsque celle-ci est accéder par l\'application' },
+          { reference: 'R2', order: 2, label: 'Charger la liste des que l\'objet la contenant' },
+          {
+            reference: 'R3', order: 2,
+            label: `La liste ne sera jamais chargée. Il sera nécessaire
+        de réaliser d\'utiliser une requete JQL pour obtenir le contenu de la liste` },
+        ]
+      }
+    ];
+
+    this.currentQuestion = this.questions[0];
   }
 
   nextStep() {
-    this.state = State.END;
+    if (this.questions.length === this.currentNum) {
+      this.state = State.END;
+    } else {
+      this.currentQuestion = this.questions[this.currentNum];
+      this.currentNum++;
+    }
   }
 
 }
