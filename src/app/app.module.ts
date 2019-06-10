@@ -20,6 +20,7 @@ import { PromotionDetailComponent } from './components/promotion-detail/promotio
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionComponent } from './components/question/question.component';
 import { ExamComponent } from './components/exam/exam.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ExamComponent } from './components/exam/exam.component';
     HttpClientModule,
     MatTableModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
