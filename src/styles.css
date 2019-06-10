@@ -28,3 +28,7 @@
 }
 
 .material-icons.blue { color:#007bff; }
+
+.mat-radio-label{
+  white-space: normal;
+}

@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PromotionComponent } from './components/promotion/promotion.component';
+import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -16,6 +18,8 @@ import { PromotionFormComponent } from './components/promotion-form/promotion-fo
 import { EtudiantFormComponent } from './components/etudiant-form/etudiant-form.component';
 import { PromotionDetailComponent } from './components/promotion-detail/promotion-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { QuestionComponent } from './components/question/question.component';
+import { ExamComponent } from './components/exam/exam.component';
 
 
 @NgModule({
@@ -26,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     SessionComponent,
     PromotionFormComponent,
     EtudiantFormComponent,
-    PromotionDetailComponent
+    PromotionDetailComponent,
+    QuestionComponent,
+    ExamComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

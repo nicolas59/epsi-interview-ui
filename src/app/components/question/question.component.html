@@ -1,0 +1,19 @@
+<mat-card *ngIf="question">
+  <mat-card-title>Question n°{{num}}</mat-card-title>
+  <mat-card-subtitle> {{question.label}}</mat-card-subtitle>
+  <mat-card-content>
+    <mat-radio-group [(ngModel)]="selectedResponse">
+      <mat-radio-button class="row col-12" *ngFor="let item of question.items" [value]="item">
+        <span class="wrap-mat-radio-label">
+          {{item.label}}
+        </span>
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card-content>
+  <mat-card-actions class="nav justify-content-end">
+    <div class="row">
+      <div class="col-12"><button class="btn btn-primary float-right" (click)="goToNextStep()"
+          [disabled]="selectedResponse ==undefined">Suivant</button></div>
+    </div>
+  </mat-card-actions>
+</mat-card>

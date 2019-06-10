@@ -1,0 +1,12 @@
+<app-question [question]="currentQuestion" [num]="currentNum" (nextStep)="nextStep()"
+  *ngIf="state === 'PENDING'; else END">
+</app-question>
+
+<ng-template #END>
+  <mat-card>
+    <mat-card-title>Session terminée</mat-card-title>
+    <mat-card-content>
+      Votre session est terminée.
+    </mat-card-content>
+  </mat-card>
+</ng-template>
