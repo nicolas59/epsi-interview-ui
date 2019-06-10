@@ -7,8 +7,8 @@ import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angu
 })
 export class QuestionComponent implements OnInit {
 
-  @Input()
-  question: Question;
+
+  _question: Question;
 
   @Input()
   num?: number;
@@ -22,10 +22,20 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  @Input()
+  set question(question: Question) {
+    this._question = question;
+    this.selectedResponse = null;
+  }
+
+  get question() {
+    return this._question;
   }
 
   goToNextStep() {
-    console.log(this.selectedResponse);
     this.nextStep.emit();
   }
 
