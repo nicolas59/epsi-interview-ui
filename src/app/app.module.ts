@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PromotionComponent } from './components/promotion/promotion.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -21,6 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuestionComponent } from './components/question/question.component';
 import { ExamComponent } from './components/exam/exam.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { InterviewDetailComponent } from './components/interview-detail/interview-detail.component';
+import { QuestionFormComponent } from './components/question-form/question-form.component';
+import { MatInputModule } from '@angular/material';
+import { SessionDetailComponent } from './components/session-detail/session-detail.component';
 
 
 @NgModule({
@@ -33,7 +39,10 @@ import { MarkdownModule } from 'ngx-markdown';
     EtudiantFormComponent,
     PromotionDetailComponent,
     QuestionComponent,
-    ExamComponent
+    ExamComponent,
+    InterviewDetailComponent,
+    QuestionFormComponent,
+    SessionDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,10 @@ import { MarkdownModule } from 'ngx-markdown';
     MatTableModule,
     MatCardModule,
     MatRadioModule,
-    MarkdownModule.forRoot()
+    MatFormFieldModule,
+    MarkdownModule.forRoot(),
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

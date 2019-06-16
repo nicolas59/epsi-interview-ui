@@ -13,10 +13,13 @@ export class QuestionComponent implements OnInit {
   @Input()
   num?: number;
 
-  selectedResponse?: string;
+  @Input()
+  visualisation = false;
+
+  selectedResponse?: Item;
 
   @Output()
-  nextStep = new EventEmitter();
+  nextStep = new EventEmitter<string>();
 
   constructor() {
   }
@@ -36,7 +39,7 @@ export class QuestionComponent implements OnInit {
   }
 
   goToNextStep() {
-    this.nextStep.emit();
+    this.nextStep.emit(this.selectedResponse.reference);
   }
 
 }

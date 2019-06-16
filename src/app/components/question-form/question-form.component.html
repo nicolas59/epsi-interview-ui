@@ -1,0 +1,37 @@
+<div class="question container">
+  <form [formGroup]="questionGroup">
+    <mat-form-field class="example-full-width" style="width:100%; height: 200px">
+      <textarea matInput formControlName="label" style="width:100%; height: 150px" placeholder="Question">
+        </textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="response" placeholder="Reponse">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="score" placeholder="Score">
+    </mat-form-field>
+
+    <div formArrayName="items" *ngFor="let item of questionGroup.get('items').controls; let i = index;">
+      <div [formGroupName]="i" style="width:100%;padding:10px;margin-top:5px" class="mat-elevation-z8">
+        <div class="form-group">
+          <mat-form-field>
+            <input class="form-control" matInput formControlName="reference" placeholder="Reference">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field style="width: 100%">
+            <input class="form-control" matInput formControlName="label" placeholder="Choix">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button (click)="addItem()" mat-raised-button color="primary">Ajouter un item</button>
+      <button (click)="save()" mat-raised-button color="primary">Enregistrer</button>
+      <button (click)="annuler()" mat-raised-button color="warm">Annuler</button>
+    </div>
+  </div>
+
+</div>

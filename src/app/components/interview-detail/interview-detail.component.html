@@ -1,0 +1,38 @@
+<div class="category">
+  <p>{{survey?.name}}</p>
+  <table mat-table [dataSource]="questions" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element">
+        <a (click)="showQuestion(element)">{{element.id}}</a>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="label">
+      <th mat-header-cell *matHeaderCellDef>
+        Question </th>
+      <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+
+  <div class="question mt-5">
+    <app-question [question]="question" [visualisation]="true" *ngIf="question"></app-question>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button (click)="editerQuestion()" mat-raised-button color="primary">Editer</button>
+      <button (click)="ajouteQuestion()" mat-raised-button color="primary">Ajouter</button>
+    </div>
+
+  </div>
+</div>

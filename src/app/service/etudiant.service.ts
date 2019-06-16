@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AbstractResource } from '../services/abstract.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EtudiantService {
+export class EtudiantService extends AbstractResource<Student, number> {
 
-  constructor(private http: HttpClient) { }
+  resourceName = 'student';
+
+  constructor(private _http: HttpClient) {
+    super(_http);
+  }
 
   save(item: Student) {
-    return this.http.post(`${environment.urlApi}/student`, item);
+    return this._http.post(`${environment.urlApi}/student`, item);
   }
 }

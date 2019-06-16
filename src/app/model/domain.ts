@@ -27,9 +27,23 @@ interface Question extends Identifier<number> {
 }
 
 interface Item extends Identifier<number> {
-    order: number;
+    order?: number;
     label: string;
     reference: string;
 }
 
+enum ExamStatus {
+    PENDING = 'PENDING',
+    END = 'END'
+}
+interface Exam {
+    status: ExamStatus;
+    questions?: Question[];
+}
+
+
+interface Session extends Identifier<number> {
+    survey: Identifier<number>;
+    studentIds: Identifier<number>[];
+}
 

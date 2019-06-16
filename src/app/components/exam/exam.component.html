@@ -1,4 +1,4 @@
-<app-question [question]="currentQuestion" [num]="currentNum" (nextStep)="nextStep()"
+<app-question [question]="currentQuestion" [num]="currentNum" (nextStep)="nextStep($event)"
   *ngIf="state === 'PENDING'; else END">
 </app-question>
 

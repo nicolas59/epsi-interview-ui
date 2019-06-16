@@ -1,9 +1,31 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { AbstractResource } from './abstract.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SessionService {
+export class SessionService extends AbstractResource<Session, number> {
 
-  constructor() { }
+  resourceName = 'session';
+
+  constructor(private _http: HttpClient) {
+    super(_http);
+  }
+
+  getSession(sessionId: string, uuid: string) {
+    return this._http.get<Exam>(`${environment.urlApi}/session/${sessionId}/uuid/${uuid}`);
+  }
+
+  answer(uuid: string, sessionId: string, questionId: number, answer: string) {
+    return this._http.post(`${environment.urlApi}/session/${sessionId}/answer`,
+      {
+        uuid: uuid,
+        answer: answer,
+        questionId: {
+          id: questionId
+        }
+      });
+  }
 }

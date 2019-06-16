@@ -1,0 +1,1 @@
+Avec JPA, au niveau de la definition d\'un collection,\nil est possible d\'utiliser le type de chargement lazy,\nque permet ce mode?\n\`\`\`java\n@OneToMany\nList<Client> clients;\n\`\`\`
