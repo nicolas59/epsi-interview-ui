@@ -19,15 +19,19 @@ import { SessionComponent } from './components/session/session.component';
 import { PromotionFormComponent } from './components/promotion-form/promotion-form.component';
 import { EtudiantFormComponent } from './components/etudiant-form/etudiant-form.component';
 import { PromotionDetailComponent } from './components/promotion-detail/promotion-detail.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuestionComponent } from './components/question/question.component';
 import { ExamComponent } from './components/exam/exam.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { InterviewDetailComponent } from './components/interview-detail/interview-detail.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule, MatSelect, MatSelectModule } from '@angular/material';
 import { SessionDetailComponent } from './components/session-detail/session-detail.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { TokenInterceptor } from './interceptor/TokenInterceptor';
+import { TokenComponent } from './components/token/token.component';
+import { InterviewFormComponent } from './components/interview-form/interview-form.component';
+import { SessionFormComponent } from './components/session-form/session-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { SessionDetailComponent } from './components/session-detail/session-deta
     ExamComponent,
     InterviewDetailComponent,
     QuestionFormComponent,
-    SessionDetailComponent
+    SessionDetailComponent,
+    TokenComponent,
+    InterviewFormComponent,
+    SessionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +67,17 @@ import { SessionDetailComponent } from './components/session-detail/session-deta
     MatFormFieldModule,
     MarkdownModule.forRoot(),
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

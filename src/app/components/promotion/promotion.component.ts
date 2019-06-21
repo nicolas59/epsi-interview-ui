@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PromotionService } from 'src/app/services/promotion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-promotion',
@@ -12,12 +13,15 @@ export class PromotionComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name'];
 
-  constructor(private promotionService: PromotionService) { }
+  constructor(private promotionService: PromotionService, private router: Router) { }
 
   ngOnInit() {
     this.promotionService.getAll().subscribe((data) => this.promotions = data);
   }
 
+  createNewPromotion() {
+    this.router.navigate(['/promotion-form'])
+  }
 
 
 }

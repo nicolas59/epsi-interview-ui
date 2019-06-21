@@ -3,7 +3,8 @@ import { SessionService } from 'src/app/services/session.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap, switchMap, map, concatMap, concatAll } from 'rxjs/operators';
 import { of, from } from 'rxjs';
-import { EtudiantService } from 'src/app/service/etudiant.service';
+import { EtudiantService } from 'src/app/services/etudiant.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-session-detail',
@@ -14,11 +15,11 @@ export class SessionDetailComponent implements OnInit {
 
   private session: Session;
 
-  private students = Array<Student>();
+  private students = Array<Context>();
 
-  displayedColumns: string[] = ['id', 'name', 'firstName', 'email'];
+  displayedColumns: string[] = ['id', 'name', 'firstName', 'email', 'uuid', 'action'];
 
-  constructor(private sessionService: SessionService, private etudiantService: EtudiantService, private activeRoute: ActivatedRoute) { }
+  constructor(private toastr: ToastrService, private sessionService: SessionService, private etudiantService: EtudiantService, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activeRoute.params
@@ -26,11 +27,24 @@ export class SessionDetailComponent implements OnInit {
         switchMap(sessionId => this.sessionService.findById(sessionId)),
         tap(session => this.session = session),
         switchMap(session => from(session.studentIds).pipe(
-          map(studentId => this.etudiantService.findById(studentId.id)),
+          map(studentId => this.sessionService.getContext(session.id, studentId.id)),
           concatAll(),
           tap(student => this.students = [...this.students, student]))
         ))
-      .subscribe(() => console.log(arguments));
+      .subscribe();
   }
 
+  sendEmail(student: Context) {
+    this.sessionService.sendEmail(this.session, student).subscribe(
+      () => this.toastr.success('Email envoyé'),
+      (error) => this.toastr.error(error)
+    );
+  }
+
+  sendEmailAll() {
+    this.sessionService.sendEmailAll(this.session).subscribe(
+      () => this.toastr.success('Emails envoyés'),
+      (error) => this.toastr.error(error)
+    );
+  }
 }

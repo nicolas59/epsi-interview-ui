@@ -1,7 +1,7 @@
-<form>
+<form [formGroup]="promotionForm">
   <div class="form-group">
     <label for="exampleInputEmail1">Nom de la promotion</label>
-    <input type="text" class="form-control" placeholder="Promotion">
+    <input type="text" class="form-control" placeholder="Promotion" formControlName="name">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" (click)="submit()"> Submit</button>
 </form>

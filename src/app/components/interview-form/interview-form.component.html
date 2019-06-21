@@ -1,0 +1,7 @@
+<form [formGroup]="interviewForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">QCM</label>
+    <input type="text" class="form-control" placeholder="Questionnaire" formControlName="name">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="submit()"> Submit</button>
+</form>

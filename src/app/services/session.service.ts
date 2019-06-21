@@ -18,6 +18,14 @@ export class SessionService extends AbstractResource<Session, number> {
     return this._http.get<Exam>(`${environment.urlApi}/session/${sessionId}/uuid/${uuid}`);
   }
 
+  getContext(sessionId: number, studentId: number) {
+    return this._http.get<Context>(`${environment.urlApi}/session/${sessionId}/student/${studentId}`);
+  }
+
+  addCategory(sessionId: number, categoryId: number) {
+    return this._http.post(`${environment.urlApi}/${this.resourceName}/${sessionId}/category/${categoryId}`, "");
+  }
+
   answer(uuid: string, sessionId: string, questionId: number, answer: string) {
     return this._http.post(`${environment.urlApi}/session/${sessionId}/answer`,
       {
@@ -26,6 +34,20 @@ export class SessionService extends AbstractResource<Session, number> {
         questionId: {
           id: questionId
         }
+      });
+  }
+
+  sendEmail(session: Session, context: Context) {
+    return this._http.post(`${environment.urlApi}/session/${session.id}/student/${context.student.id}/action`,
+      {
+        action: 'email'
+      });
+  }
+
+  sendEmailAll(session: Session) {
+    return this._http.post(`${environment.urlApi}/session/${session.id}/action`,
+      {
+        action: 'email'
       });
   }
 }

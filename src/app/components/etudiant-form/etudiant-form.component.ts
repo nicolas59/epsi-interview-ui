@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { from, of, pipe } from 'rxjs';
-import { EtudiantService } from 'src/app/service/etudiant.service';
+import { EtudiantService } from 'src/app/services/etudiant.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 

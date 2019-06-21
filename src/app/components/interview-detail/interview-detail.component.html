@@ -8,7 +8,9 @@
       <td mat-cell *matCellDef="let element">
         <a (click)="showQuestion(element)">{{element.id}}</a>
       </td>
-      <td mat-footer-cell *matFooterCellDef></td>
+      <td mat-footer-cell *matFooterCellDef>
+        {{questions.length}} question(s)
+      </td>
     </ng-container>
 
     <!-- Name Column -->

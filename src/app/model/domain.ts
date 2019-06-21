@@ -43,7 +43,13 @@ interface Exam {
 
 
 interface Session extends Identifier<number> {
-    survey: Identifier<number>;
-    studentIds: Identifier<number>[];
+    surveyId: Identifier<number>;
+    studentIds?: Identifier<number>[];
+}
+
+
+interface Context {
+    student: Student;
+    uuid: string;
 }
 
