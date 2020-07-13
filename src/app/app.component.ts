@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'interview-ui';
+
+  get authenticated() {
+    return localStorage.getItem('token') !== null;
+  }
 }

@@ -1,3 +1,11 @@
 .wrap-mat-radio-label{
     white-space: normal !important;
 }
+
+mat-card-subtitle{
+    color: black;
+}
+
+mat-card-content{
+    margin-top: 30px;
+}

@@ -3,11 +3,13 @@ import { InterviewService } from 'src/app/services/interview.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap, switchMap } from 'rxjs/operators';
 import { SessionService } from 'src/app/services/session.service';
+import { ToastrService } from 'ngx-toastr';
 
 enum State {
   INIT = 'INIT',
   PENDING = 'PENDING',
-  END = 'END'
+  END = 'END',
+  EXPIRED = 'EXPIRED'
 }
 
 @Component({
@@ -27,7 +29,8 @@ export class ExamComponent implements OnInit {
 
   constructor(private surveyService: InterviewService,
     private activeRoute: ActivatedRoute,
-    private sessionSerrvice: SessionService) { }
+    private sessionSerrvice: SessionService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.activeRoute.params
@@ -37,16 +40,39 @@ export class ExamComponent implements OnInit {
         switchMap(params => this.sessionSerrvice.getSession(this.sessionId, this.uuid)))
       .subscribe(
         (exam) => {
-          if (exam.status !== 'PENDING') {
-            this.state = State.END;
-          } else {
-            this.questions = exam.questions;
-            this.currentNum = 1;
-            this.currentQuestion = this.questions[0];
-            this.state = State.PENDING;
+          switch (exam.status) {
+            case 'PENDING':
+              this.initForm(exam);
+              break;
+            case 'END':
+              this.state = State.END;
+              break;
+            case 'EXPIRED':
+              this.state = State.EXPIRED;
+              break;
           }
         }
       );
+  }
+
+  private initForm(exam: Exam) {
+    this.questions = exam.questions;
+    this.currentNum = 1;
+
+    if (exam.lastQuestionAnswered) {
+      const index = this.questions.reduce((acc, q, currentIndex) => {
+        if (q.id === exam.lastQuestionAnswered.id) {
+          acc = currentIndex;
+        }
+        return acc;
+      }, 0);
+      this.currentNum = index + 2;
+      this.currentQuestion = this.questions[index + 1];
+    } else {
+      this.currentNum = 1;
+      this.currentQuestion = this.questions[0];
+    }
+    this.state = State.PENDING;
   }
 
   nextStep(response) {
@@ -60,8 +86,7 @@ export class ExamComponent implements OnInit {
             this.currentNum++;
           }
         },
-        (error) => console.error(error)
+        (error) => this.toastr.error('Erreur lors de la sauvegade de la reponse')
       );
   }
-
 }

@@ -1,12 +1,17 @@
-<app-question [question]="currentQuestion" [num]="currentNum" (nextStep)="nextStep($event)"
-  *ngIf="state === 'PENDING'; else END">
+<app-question [question]="currentQuestion" [num]="currentNum" (nextStep)="nextStep($event)" [randomItem]="true"
+  *ngIf="state === 'PENDING'">
 </app-question>
 
-<ng-template #END>
-  <mat-card>
-    <mat-card-title>Session terminée</mat-card-title>
-    <mat-card-content>
-      Votre session est terminée.
-    </mat-card-content>
-  </mat-card>
-</ng-template>
+<mat-card *ngIf="state === 'END'">
+  <mat-card-title>Session terminée</mat-card-title>
+  <mat-card-content>
+    Votre session est terminée.
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="state === 'EXPIRED'">
+  <mat-card-title>Session expirée</mat-card-title>
+  <mat-card-content>
+    Votre session a expirée.
+  </mat-card-content>
+</mat-card>

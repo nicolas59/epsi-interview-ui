@@ -23,7 +23,8 @@ export class SessionService extends AbstractResource<Session, number> {
   }
 
   addCategory(sessionId: number, categoryId: number) {
-    return this._http.post(`${environment.urlApi}/${this.resourceName}/${sessionId}/category/${categoryId}`, "");
+    return this._http.post(`${environment.urlApi}/${this.resourceName}/${sessionId}/category/${categoryId}`,
+      null);
   }
 
   answer(uuid: string, sessionId: string, questionId: number, answer: string) {

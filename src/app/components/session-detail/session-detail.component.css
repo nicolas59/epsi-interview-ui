@@ -1,7 +1,31 @@
 table {
-    width: 100%
+  width: 100%;
 }
 
-mat-icon{
-    width: 60px;
+mat-icon {
+  width: 60px;
+}
+
+.end::after {
+  padding: 10px;
+  background-color: green;
+  border-radius: 10px;
+  content: "Terminé";
+  color: white;
+}
+
+.in_progress::after {
+  padding: 10px;
+  background-color: orange;
+  border-radius: 10px;
+  content: "En cours";
+  color: white;
+}
+
+.not_started::after {
+  padding: 10px;
+  background-color: red;
+  border-radius: 10px;
+  content: "Non commencé";
+  color: white;
 }

@@ -12,7 +12,6 @@ export abstract class AbstractResource<T, ID> {
     }
 
     getAll() {
-        console.log(`${environment.urlApi}/${this.resourceName}`);
         return this.http.get<[T]>(`${environment.urlApi}/${this.resourceName}`);
     }
 

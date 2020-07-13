@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  interview-ui:
+    image: interview-ui
+    build: .
+    ports:
+      - 8081:8081

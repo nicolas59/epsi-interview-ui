@@ -1,13 +1,14 @@
 <table mat-table [dataSource]="students" class="mat-elevation-z8">
-
   <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <th mat-header-cell *matHeaderCellDef>No.</th>
     <td mat-cell *matCellDef="let element">
-      <a [routerLink]="['/promotion-detail', element.id]">{{element.student.id}}</a>
+      <a [routerLink]="['/promotion-detail', element.id]">{{
+        element.student.id
+      }}</a>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
@@ -15,33 +16,54 @@
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>
-      Nom </th>
-    <td mat-cell *matCellDef="let element"> {{element.student.name}} </td>
+      Nom
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.student.name }}</td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
   <ng-container matColumnDef="firstName">
     <th mat-header-cell *matHeaderCellDef>
-      Prenom </th>
-    <td mat-cell *matCellDef="let element"> {{element.student.firstName}} </td>
+      Prenom
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.student.firstName }}</td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef>
-      Email </th>
-    <td mat-cell *matCellDef="let element"> {{element.student.email}} </td>
+      Email
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.student.email }}</td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
   <ng-container matColumnDef="uuid">
     <th mat-header-cell *matHeaderCellDef>
-      UUID </th>
-    <td mat-cell *matCellDef="let element"> {{element.uuid}} </td>
+      UUID
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
 
     <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
 
+  <ng-container matColumnDef="statut">
+    <th mat-header-cell *matHeaderCellDef>
+      Statut
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <span [class]="getStatus(element)"></span>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef>
+      Score
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>
-      Actions </th>
+      Actions
+    </th>
     <td mat-cell *matCellDef="let element">
       <a (click)="sendEmail(element)">
         <mat-icon class="blue">email</mat-icon>
@@ -55,11 +77,10 @@
       <a (click)="createNewStudent()">
         <mat-icon class="blue">add_circle</mat-icon>
       </a>
-
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>

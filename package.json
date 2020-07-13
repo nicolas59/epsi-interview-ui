@@ -4,10 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
+    "start-aws": "ng serve --proxy-config proxy.conf.aws.json",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "npm run build:prod && tar -cvf interview-ui.tar -C dist/ .&& aws s3 cp interview-ui.tar s3://gfi-mutex-deploiement/  --profile gfi"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +26,9 @@
     "@angular/router": "~8.0.0",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "jwt-decode": "^2.2.0",
     "ngx-markdown": "^8.0.2",
+    "ngx-toastr": "^10.0.4",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

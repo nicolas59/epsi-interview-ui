@@ -1,22 +1,31 @@
 <mat-card *ngIf="question">
-  <mat-card-title>Question n°{{num}}</mat-card-title>
+  <mat-card-title>Question n°{{ num }}</mat-card-title>
   <mat-card-subtitle>
     <markdown [data]="question.label"></markdown>
   </mat-card-subtitle>
-  <mat-card-content>
+  <mat-card-content *ngIf="!question.multiple; else multipleSelection">
     <mat-radio-group [(ngModel)]="selectedResponse">
       <mat-radio-button class="row col-12" *ngFor="let item of question.items" [value]="item">
         <span class="wrap-mat-radio-label">
-          {{item.label}}
+          {{ item.label }}
         </span>
       </mat-radio-button>
     </mat-radio-group>
   </mat-card-content>
+  <ng-template #multipleSelection>
+    <ng-container *ngFor="let it of multipleSelectedResponses">
+      <div class="form-group">
+        <mat-checkbox class="example-margin" [(ngModel)]="it.state">{{ it.item.label }}</mat-checkbox>
+      </div>
+    </ng-container>
+  </ng-template>
   <mat-card-actions class="nav justify-content-end">
     <div class="row">
       <div class="col-12">
-        <button *ngIf="!visualisation" class="btn btn-primary float-right" (click)="goToNextStep()"
-          [disabled]="selectedResponse ==undefined">Suivant</button></div>
+        <button *ngIf="!visualisation" class="btn btn-primary float-right" (click)="goToNextStep()" [disabled]="!isNextButtonEnabled">
+          Suivant
+        </button>
+      </div>
     </div>
   </mat-card-actions>
 </mat-card>
