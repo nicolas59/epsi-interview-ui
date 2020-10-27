@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "npm run build:prod && tar -cvf interview-ui.tar -C dist/ .&& aws s3 cp interview-ui.tar s3://gfi-mutex-deploiement/  --profile gfi"
+    "deploy": "npm run build:prod && tar -cvf interview-ui.tar -C dist/ .&& aws s3 cp interview-ui.tar s3://gfi-mutex-deploiement/  --profile gfi",
+    "deploy-gitlab": "npm run build:prod && tar -cvf interview-ui.tar -C dist/ .&& aws s3 cp interview-ui.tar s3://gfi-mutex-deploiement/"
   },
   "private": true,
   "dependencies": {
