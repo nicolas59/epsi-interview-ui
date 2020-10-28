@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlApi: '/api'
+  urlApi: "https://qcm-api.cloud-gfi-nord.fr",
 };
