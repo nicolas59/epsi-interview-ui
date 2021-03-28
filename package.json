@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "npm run build:prod && tar -cvf interview-ui.tar -C dist/ .&& aws s3 cp interview-ui.tar s3://gfi-mutex-deploiement/  --profile gfi",
-    "deploy-gitlab": "npm run build:prod && aws s3 cp dist/interview-ui/ s3://qcm.cloud-gfi-nord.fr/ --recursive"
+    "deploy-gitlab": "npm run build:prod && aws s3 cp dist/interview-ui/ s3://qcm.cloud-gfi-nord.fr/ --recursive --acl public-read"
   },
   "private": true,
   "dependencies": {
